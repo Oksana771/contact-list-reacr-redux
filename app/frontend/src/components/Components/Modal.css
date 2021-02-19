@@ -1,0 +1,7 @@
+.modal{
+    position: relative!important;
+}
+
+.ui.modal{
+    background-color: transparent!important;
+}
