@@ -1,41 +1,133 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 import ContactItem from "./ContactItem/ContactItem";
 import './ContactList.css'
-import Loader from "../Spinner/Spinner";
-import Header from "../Header/header";
+
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
-import { getContact, deleteContact, search } from "../../Actions/ContactListActions";
+import FilterResults from 'react-filter-search';
+import { getContactList, deleteContact } from "../../Actions/ContactListActions";
 
 
 import { connect } from "react-redux";
 
 
 class ContactSearch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      value: ''
+    };
+  }
 
+  handleChange = event => {
+    const { value } = event.target;
+    this.setState({ value });
+  };
+  componentWillMount() {
+    fetch('http://localhost:8000/api/contacts/')
+      .then(response => response.json())
+      .then(json => this.setState({ data: json }));
+  }
 
   render() {
-    const { search, value } = this.props;
+    const { data, value } = this.state;
 
     return (
-      
-                    <input
-                      className="form-control"
-                      placeholder="Procurar Trabalho"
-                      onChange={(e) => search(e.target.value)}
-                      value={value} />
-                   
+      <Fragment>
+
+        <div className="container">
+          <div className="">
+            <div className="col-lg-12">
+              <div className="main-box clearfix d-flex flex-column align-items-center" style={{ marginTop: '2rem' }}>
+              <form className="form-inline my-2 my-lg-0 " >
+                        <input
+                          value={value} onChange={this.handleChange}
+                          className="form-control mr-sm-2 "
+                          type="search"
+                          placeholder="Search..."
+                          aria-label="Search"
+
+                        />
+                     </form>
+                <div className="table-responsive ">
+                  <div className="table user-list ">
+                  
+
+
+                    <div  style={{ marginTop: '2rem' }}>
+                    
+                      <FilterResults
+                        value={value}
+                        data={data}
+                        renderResults={results => (
+                          <div class=" d-flex justify-content-around flex-wrap">
+                            {results.map(item => (
+                              <div>
+                                <div className='  ' key={item.id}>
+
+                                  <div>
+
+                                    <div className=' d-flex flex-column justify-content-center'>
+                                      < ContactItem
+                                        avatar={item.avatar}
+                                        name={item.name}
+                                        gender={item.gender}
+                                        surname={item.surname}
+                                        email={item.email}
+                                        role={item.role}
+                                        status={item.status}
+
+                                      />
+
+                                      <div className=' d-flex justify-content-center  '  >
+                                        <Link to={`/delete/${item.id}`} className='small ui negative basic button'  >
+                                          Delete
+  </Link>
+
+
+
+
+                                        < Link to={`/edit/${item.id}/`} className='small ui positive basic button'>
+                                          Edit/Detail
+</Link>
+
+
+
+
+
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      />
+
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </Fragment >
     );
   }
 }
-const mapStateToProps = ({contacts}) => {
+const mapStateToProps = results => ({
 
-  return {value:contacts.value}
+  results: results.results
 
-}
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({search}, dispatch);
-}
+})
 
 
-export default connect(mapStateToProps,mapDispatchToProps, { getContact, deleteContact, search })(ContactSearch);
+
+export default connect(mapStateToProps, { getContactList, deleteContact })(ContactSearch);

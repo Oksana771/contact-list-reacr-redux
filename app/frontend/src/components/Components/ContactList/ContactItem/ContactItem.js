@@ -5,7 +5,7 @@ import "./ContactItem.css";
 class ContactItem extends React.Component {
   state = {
     name: this.props.name,
-    role: this.props.role,
+    phone: this.props.phone,
     avatar: this.props.avatar,
     surname: this.props.surname,
     status: this.props.status,
@@ -13,7 +13,7 @@ class ContactItem extends React.Component {
     gender: this.props.gender,
   };
   render() {
-    const { avatar, role, name, email, surname, gender } = this.state;
+    const { avatar, phone, name, email, surname, gender } = this.state;
     const { status } = this.props;
 
    
@@ -29,18 +29,23 @@ class ContactItem extends React.Component {
     else if (status === "Pending") statusStyle = "label label-warning";
     return (
       <div className=' ' >
-        <div className=' col-12 ' >
+        <div className=' col-12  ' style={{ marginBottom: '2rem', marginTop: '2rem'  }}>
           <div className="card ">
             <div className ="card-body" >
               <p >
                 <img className="card-title" src={URL} alt="" />
 
-                <p className="card-title">{role}</p>
+               
               </p>
+              
               <p>
                 Name: {name}
               </p>
               <p> Surname: {surname}</p>
+              <p>
+              Phone:
+              <a href="tel:+380963049630 "> {phone}</a>
+              </p>
               <p className="">
 
                 Status: {status}

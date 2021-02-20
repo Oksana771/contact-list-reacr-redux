@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 
 
 class ContactList extends React.Component {
+ 
   componentDidMount() {
     this.props.getContactList();
 
@@ -19,14 +20,14 @@ class ContactList extends React.Component {
   
 
   render() {
-
+    
 
     return (
       <Fragment>
         
         <div className="container">
           <div className="">
-            <div className="col-lg-12">
+            <div className="col-lg-12 " >
               <div className="main-box clearfix">
                 <div className="table-responsive ">
                   <div className="table user-list ">
@@ -41,14 +42,14 @@ class ContactList extends React.Component {
 
                             <div className="  ">
 
-                              <div className=' d-flex flex-column justify-content-center'>
+                              <div className=' d-flex flex-column justify-content-center' >
                                 < ContactItem
                                   avatar={item.avatar}
                                   name={item.name}
                                   gender={item.gender}
                                   surname={item.surname}
                                   email={item.email}
-                                  role={item.role}
+                                  phone={item.phone}
                                   status={item.status}
 
                                 />

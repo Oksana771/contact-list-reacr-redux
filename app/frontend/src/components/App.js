@@ -23,7 +23,7 @@ class App extends Component {
         <Header />
           <Switch>
             <Route exact path='/' component={Dashboard} />
-            <Route exact path='/search/:id' component={ContactSearch} />
+            <Route exact path='/search' component={ContactSearch} />
             <Route exact path='/add-new-contact' component={ContactListCreate} />
             <Route exact path='/delete/:id' component={ContactDelete} />
             <Route exact path='/edit/:id' component={ContactEdit} />

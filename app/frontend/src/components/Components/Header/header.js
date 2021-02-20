@@ -1,23 +1,15 @@
 import React from "react";
 
-import {
-  Container,
-  Row,
-  Col,
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import "./header.css";
-import { connect } from "react-redux";
+
 
 class Header extends React.Component {
  
+ 
   render() {
-    
+   
     return (
       <div className="container">
       <div className="d-flex justify-content-center">
@@ -39,20 +31,18 @@ class Header extends React.Component {
                 </Link>
               </li>
             </ul>
+          
             <form className="form-inline my-2 my-lg-0 float-right">
-              <input
-                className="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                
-              />
+         
+               <Link className="nav-link" to="/search" >
               <button
+                 
                 className="btn btn-outline-success my-2 my-sm-0"
                 type="submit"
               >
                 Search
               </button>
+              </Link>
             </form>
           </div>
         </nav>

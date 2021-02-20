@@ -4,7 +4,7 @@ from .models import ContactListModel
 
 
 class ContactListAdmin(admin.ModelAdmin):
-    list_display = ('id', "name", "surname", "role",
+    list_display = ('id', "name", "surname", "phone",
                      "status", "email", )
     list_filter = ("name",)
     list_filter = ("surname",)

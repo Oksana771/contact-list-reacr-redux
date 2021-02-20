@@ -40,7 +40,7 @@ class ContactForm extends Component {
           <Field name = "surname" component={this.renderField} label='Surname' />
           <Field type="number"  min="1"  max="99" name = "avatar" component={this.renderField} label='Avatar' />
           <Field name = "gender" component={this.renderField} label='Gender' />
-          <Field name = "role" component={this.renderField} label='Role' />
+          <Field name = "phone" component={this.renderField} label='Phone' />
           <Field name = "status" component={this.renderField} label='Status' />
           <Field name = "email" component={this.renderField} label='Email' />
           
